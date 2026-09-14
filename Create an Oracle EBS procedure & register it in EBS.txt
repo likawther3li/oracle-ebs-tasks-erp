@@ -1,0 +1,52 @@
+SQL> DECLARE
+  2  V_SAL NUMBER;
+  3  BEGIN
+  4  SELECT SAL INTO V_SAL FROM EMP WHERE EMPNO = &ENO;
+  5  DBMS_OUTPUT.PUT_LINE('SAL = ' ||V_SAL);
+  6  END;
+  7  /
+Enter value for eno: 7900
+old   4: SELECT SAL INTO V_SAL FROM EMP WHERE EMPNO = &ENO;
+new   4: SELECT SAL INTO V_SAL FROM EMP WHERE EMPNO = 7900;
+SAL = 950
+
+PL/SQL procedure successfully completed.
+
+---------------------------------------
+SQL> DECLARE
+  2     V_SAL NUMBER;
+  3  BEGIN
+  4     SELECT SAL INTO V_SAL FROM EMP WHERE EMPNO=&ENO;
+  5     DBMS_OUTPUT.PUT_LINE('SAL='||V_SAL);
+  6  EXCEPTION
+  7     WHEN NO_DATA_FOUND THEN
+  8        DBMS_OUTPUT.PUT_LINE('INPUT A VALID EMPNO !!');
+  9  END;
+ 10  
+ 11  /
+Enter value for eno: 111
+old   4:    SELECT SAL INTO V_SAL FROM EMP WHERE EMPNO=&ENO;
+new   4:    SELECT SAL INTO V_SAL FROM EMP WHERE EMPNO=111;
+INPUT A VALID EMPNO !!
+
+PL/SQL procedure successfully completed.
+---------------------------------
+SQL> DECLARE
+  2     V_SAL NUMBER;
+  3  BEGIN
+  4     SELECT SAL INTO V_SAL FROM EMP WHERE EMPNO=&ENO;
+  5     DBMS_OUTPUT.PUT_LINE('SAL='||V_SAL);
+  6  EXCEPTION
+  7     WHEN NO_DATA_FOUND THEN
+  8        DBMS_OUTPUT.PUT_LINE('INPUT A VALID EMPNO !!');
+  9     WHEN OTHERS THEN
+ 10        DBMS_OUTPUT.PUT_LINE('CHECK YOUR PROGRAM!!!');
+ 11  END;
+ 12  /
+Enter value for eno: 123456
+old   4:    SELECT SAL INTO V_SAL FROM EMP WHERE EMPNO=&ENO;
+new   4:    SELECT SAL INTO V_SAL FROM EMP WHERE EMPNO=123456;
+INPUT A VALID EMPNO !!
+
+PL/SQL procedure successfully completed.
+--------------------

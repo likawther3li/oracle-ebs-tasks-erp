@@ -1,0 +1,50 @@
+SQL*Plus: Release 10.1.0.4.2 - Production on Sun Sep 13 20:52:04 2026
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 11g Enterprise Edition Release 11.2.0.4.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+SQL> CREATE OR REPLACE PROCEDURE KAWTHER_PR_TEST IS 
+  2  BEGIN
+  3  DBMS_OUTPUT.PUT_LINE('WELCOME TO ORACLE EBS PROC..!');
+  4  END;
+  5  /
+
+Procedure created.
+
+SQL> SET SERVEROUTPUT ON;
+SQL> EXEC KAWTHER_PR_TEST;
+WELCOME TO ORACLE EBS PROC..!
+
+PL/SQL procedure successfully completed.
+
+SQL> CREATE OR REPLACE FUNCTION KAWTHER_FN_TEST RETURN VARCHAR2 IS V_MSG VARCHAR2(2000);
+  2  BEGIN
+  3  V_MSG := 'WELCOME TO ORACLE EBS FUNCTION..!';
+  4  RETURN V_MSG;
+  5  END
+  6  END;
+  7  /
+
+Warning: Function created with compilation errors.
+
+SQL> CREATE OR REPLACE FUNCTION KAWTHER_FN_TEST RETURN VARCHAR2 IS
+  2  V_MSG VARCHAR2(2000);
+  3  BEGIN
+  4     V_MSG := 'WELCOME TO ORACLE EBS FUNCTION..!';
+  5     RETURN V_MSG;
+  6  END;
+  7  /
+
+Function created.
+
+SQL> SELECT KAWTHER_FN_TEST FROM DUAL;
+
+KAWTHER_FN_TEST
+--------------------------------------------------------------------------------
+WELCOME TO ORACLE EBS FUNCTION..!
+
+SQL> 

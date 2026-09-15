@@ -1,0 +1,25 @@
+SQL*Plus: Release 10.1.0.4.2 - Production on Tue Sep 15 10:14:49 2026
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 11g Enterprise Edition Release 11.2.0.4.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+SQL> CREATE OR REPLACE PROCEDURE KAWTHER_PR_SYSDT (ERRBUF OUT VARCHAR2,RETCODE OUT NUMBER) IS
+  2  V_DT DATE;
+  3  BEGIN
+  4  SELECT SYSDATE INTO V_DT FROM DUAL;
+  5  FND_FILE.PUT_LINE(FND_FILE.OUTPUT,'YOU CAN SEE LOG DETAILS HERE !');
+  6  FND_FILE.PUT_LINE(FND_FILE.OUTPUT,'CURRENT DATE = '||V_DT);
+  7  EXCEPTION
+  8  WHEN OTHERS THEN
+  9  FND_FILE.PUT_LINE(FND_FILE.OUTPUT,'CHECK YOUR PROGRAM: '
+ 10        ||ERRBUF||' ERRCODE = '||RETCODE);
+ 11  END;
+ 12  /
+
+Procedure created.
+
+SQL> 

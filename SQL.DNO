@@ -1,0 +1,193 @@
+SQL*Plus: Release 10.1.0.4.2 - Production on Tue Sep 15 17:26:18 2026
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+ERROR:
+ORA-12154: TNS:could not resolve the connect identifier specified
+
+
+
+Connected to:
+Oracle Database 11g Enterprise Edition Release 11.2.0.4.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+SQL> 
+SQL> VARIABLE DNO NUMBER
+SQL> EXEC :DNO := 10;
+
+PL/SQL procedure successfully completed.
+
+SQL> 
+SQL> SELECT * FROM EMP WHERE DEPTNO = :DNO;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7839 KING       PRESIDENT            17-NOV-81       5000
+        10
+
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450
+        10
+
+      7934 MILLER     CLERK           7782 23-JAN-82       1300
+        10
+
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+        99 ALHARITH   IT
+        10
+
+        39 SARA       IT
+        10
+
+        40 HAYA       IT
+        10
+
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+       991 AHMED      SALES                                              0
+        10
+
+        44 MANAR      IT
+        10
+
+       992 AHMED      SALES
+        10
+
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+        23 ALHARITH   IT
+        10
+
+      6453 RAZAN      IT
+        10
+
+        21 TIBS       IT                                                 0
+        10
+
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+        33 MARYIA     SALES
+        10
+
+         1 ANIL       IT
+        10
+
+      5672 TIBYAN     IT
+        10
+
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+        18 MARIYA     IT
+        10
+
+        12 AHED       IT
+        10
+
+        50 Abdulmajed IT
+        10
+
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+        25 YAMMAN     IT                                                 0
+        10
+
+        97 SAIF       IT
+        10
+
+        51 Abdo       Sales                                              0
+        10
+
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+        53 raphina    IT
+        10
+
+        74 KHADIJA    IT
+        10
+
+       128 MAR        IT
+        10
+
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+        34 MAJED      IT
+        10
+
+      1019 MESSI      IT                                                 0
+        10
+
+        89 RIMA       IT
+        10
+
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+        90 RIMAN      SALES                                              0
+        10
+
+        66 IBRAHIM    IT
+        10
+
+        91 FARAH      IT
+        10
+
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+        77 ABDULLAH   IT
+        10
+
+        17 SAFA       IT
+        10
+
+        11 SUNIL      SALES                                              0
+        10
+
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+        14 JON        IT
+        10
+
+        13 ANIL       IT
+        10
+
+        76 ABDULLAH   IT
+        10
+
+
+36 rows selected.
+
+SQL> 

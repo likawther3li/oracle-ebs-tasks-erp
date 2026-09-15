@@ -1,0 +1,70 @@
+~Factorial~
+
+SQL*Plus: Release 10.1.0.4.2 - Production on Tue Sep 15 09:47:32 2026
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 11g Enterprise Edition Release 11.2.0.4.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+SQL> SET SERVEROUTPUT ON;
+SQL> DECLARE
+  2  N NUMBER;
+  3  FACT NUMBER :=1;
+  4  I NUMBER;
+  5  BEGIN
+  6  N :=&N;
+  7  IF N < 0 THEN
+  8  RAISE_APPLICATION_ERROR(-20001, 'NUMBER MUST BE POSITIVE');
+  9  END IF;
+ 10  I :=N;
+ 11  WHILE I > 0 LOOP
+ 12  FACT := FACT * I;
+ 13  I := I - 1;
+ 14  END LOOP;
+ 15  DBMS_OUTPUT.PUT_LINE('FACTORIAL OF '||N||' = '||FACT);
+ 16  EXCEPTION
+ 17  WHEN OTHERS THEN
+ 18  DBMS_OUTPUT.PUT_LINE('ERROR: '||SQLERRM);
+ 19  END;
+ 20  /
+Enter value for n: 5
+old   6: N :=&N;
+new   6: N :=5;
+FACTORIAL OF 5 = 120
+
+PL/SQL procedure successfully completed.
+
+SQL> /
+Enter value for n: -3
+old   6: N :=&N;
+new   6: N :=-3;
+ERROR: ORA-20001: NUMBER MUST BE POSITIVE
+
+PL/SQL procedure successfully completed.
+
+SQL> /
+Enter value for n: ABC
+old   6: N :=&N;
+new   6: N :=ABC;
+N :=ABC;
+    *
+ERROR at line 6:
+ORA-06550: line 6, column 5:
+PLS-00201: identifier 'ABC' must be declared
+ORA-06550: line 6, column 1:
+PL/SQL: Statement ignored
+
+
+SQL> /
+Enter value for n: 7
+old   6: N :=&N;
+new   6: N :=7;
+FACTORIAL OF 7 = 5040
+
+PL/SQL procedure successfully completed.
+
+SQL> 
+SQL> 

@@ -1,0 +1,191 @@
+SQL*Plus: Release 10.1.0.4.2 - Production on Tue Sep 22 12:41:25 2026
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 11g Enterprise Edition Release 11.2.0.4.0 - 64bit Pro
+With the Partitioning, OLAP, Data Mining and Real Application Testing
+
+SQL> DESC TAB;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- -----------------
+ TNAME                                     NOT NULL VARCHAR2(30)
+ TABTYPE                                            VARCHAR2(7)
+ CLUSTERID                                          NUMBER
+
+SQL> SELECT COUNT(*) FROM TAB WHERE TNAME LIKE 'FND_%';
+
+  COUNT(*)
+----------
+      1597
+
+SQL> SELECT LOOKUP_TYPE FROM FND_LOOKUP_TYPES WHERE LOOKUP_TYPE LIKE 
+
+LOOKUP_TYPE
+------------------------------
+KAWTHER_LOOKUP_DEPT
+
+SQL> DESC FND_PROFILES;
+ERROR:
+ORA-04043: object FND_PROFILES does not exist
+
+
+SQL> DESC FND_PROFILE;
+FUNCTION BUMPCACHEVERSION_RF RETURNS VARCHAR2
+ Argument Name                  Type                    In/Out Defaul
+ ------------------------------ ----------------------- ------ ------
+ P_SUBSCRIPTION_GUID            RAW                     IN
+ P_EVENT                        WF_EVENT_T              IN/OUT
+FUNCTION DEFINED RETURNS BOOLEAN
+ Argument Name                  Type                    In/Out Defaul
+ ------------------------------ ----------------------- ------ ------
+ NAME                           VARCHAR2                IN
+FUNCTION DELETE RETURNS BOOLEAN
+ Argument Name                  Type                    In/Out Defaul
+ ------------------------------ ----------------------- ------ ------
+ X_NAME                         VARCHAR2                IN
+ X_LEVEL_NAME                   VARCHAR2                IN
+ X_LEVEL_VALUE                  VARCHAR2                IN     DEFAUL
+ X_LEVEL_VALUE_APP_ID           VARCHAR2                IN     DEFAUL
+ X_LEVEL_VALUE2                 VARCHAR2                IN     DEFAUL
+PROCEDURE GET
+ Argument Name                  Type                    In/Out Defaul
+ ------------------------------ ----------------------- ------ ------
+ NAME                           VARCHAR2                IN
+ VAL                            VARCHAR2                OUT
+FUNCTION GET_ALL_TABLE_VALUES RETURNS VARCHAR2
+ Argument Name                  Type                    In/Out Defaul
+ ------------------------------ ----------------------- ------ ------
+ DELIM                          VARCHAR2                IN
+PROCEDURE GET_SPECIFIC
+ Argument Name                  Type                    In/Out Defaul
+ ------------------------------ ----------------------- ------ ------
+ NAME_Z                         VARCHAR2                IN
+ USER_ID_Z                      NUMBER                  IN     DEFAUL
+ RESPONSIBILITY_ID_Z            NUMBER                  IN     DEFAUL
+ APPLICATION_ID_Z               NUMBER                  IN     DEFAUL
+ VAL_Z                          VARCHAR2                OUT
+ DEFINED_Z                      BOOLEAN                 OUT
+ ORG_ID_Z                       NUMBER                  IN     DEFAUL
+ SERVER_ID_Z                    NUMBER                  IN     DEFAUL
+FUNCTION GET_TABLE_VALUE RETURNS VARCHAR2
+ Argument Name                  Type                    In/Out Defaul
+ ------------------------------ ----------------------- ------ ------
+ NAME                           VARCHAR2                IN
+PROCEDURE INITIALIZE
+ Argument Name                  Type                    In/Out Defaul
+ ------------------------------ ----------------------- ------ ------
+ USER_ID_Z                      NUMBER                  IN     DEFAUL
+ RESPONSIBILITY_ID_Z            NUMBER                  IN     DEFAUL
+ APPLICATION_ID_Z               NUMBER                  IN     DEFAUL
+ SITE_ID_Z                      NUMBER                  IN     DEFAUL
+PROCEDURE INITIALIZE_ORG_CONTEXT
+PROCEDURE PUT
+ Argument Name                  Type                    In/Out Defaul
+ ------------------------------ ----------------------- ------ ------
+ NAME                           VARCHAR2                IN
+ VAL                            VARCHAR2                IN
+PROCEDURE PUTMULTIPLE
+ Argument Name                  Type                    In/Out Defaul
+ ------------------------------ ----------------------- ------ ------
+ NAMES                          VARCHAR2                IN
+ VALS                           VARCHAR2                IN
+ NUM                            NUMBER                  IN
+FUNCTION PUT_CACHE_CLEARED RETURNS BOOLEAN
+FUNCTION SAVE RETURNS BOOLEAN
+ Argument Name                  Type                    In/Out Defaul
+ ------------------------------ ----------------------- ------ ------
+ X_NAME                         VARCHAR2                IN
+ X_VALUE                        VARCHAR2                IN
+ X_LEVEL_NAME                   VARCHAR2                IN
+ X_LEVEL_VALUE                  VARCHAR2                IN     DEFAUL
+ X_LEVEL_VALUE_APP_ID           VARCHAR2                IN     DEFAUL
+ X_LEVEL_VALUE2                 VARCHAR2                IN     DEFAUL
+FUNCTION SAVE_USER RETURNS BOOLEAN
+ Argument Name                  Type                    In/Out Defaul
+ ------------------------------ ----------------------- ------ ------
+ X_NAME                         VARCHAR2                IN
+ X_VALUE                        VARCHAR2                IN
+FUNCTION VALUE RETURNS VARCHAR2
+ Argument Name                  Type                    In/Out Defaul
+ ------------------------------ ----------------------- ------ ------
+ NAME                           VARCHAR2                IN
+FUNCTION VALUE_SPECIFIC RETURNS VARCHAR2
+ Argument Name                  Type                    In/Out Defaul
+ ------------------------------ ----------------------- ------ ------
+ NAME                           VARCHAR2                IN
+ USER_ID                        NUMBER                  IN     DEFAUL
+ RESPONSIBILITY_ID              NUMBER                  IN     DEFAUL
+ APPLICATION_ID                 NUMBER                  IN     DEFAUL
+ ORG_ID                         NUMBER                  IN     DEFAUL
+ SERVER_ID                      NUMBER                  IN     DEFAUL
+FUNCTION VALUE_WNPS RETURNS VARCHAR2
+ Argument Name                  Type                    In/Out Defaul
+ ------------------------------ ----------------------- ------ ------
+ NAME                           VARCHAR2                IN
+
+SQL> DESC FND_USER;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- -----------------
+ USER_ID                                   NOT NULL NUMBER(15)
+ USER_NAME                                 NOT NULL VARCHAR2(100)
+ LAST_UPDATE_DATE                          NOT NULL DATE
+ LAST_UPDATED_BY                           NOT NULL NUMBER(15)
+ CREATION_DATE                             NOT NULL DATE
+ CREATED_BY                                NOT NULL NUMBER(15)
+ LAST_UPDATE_LOGIN                                  NUMBER(15)
+ ENCRYPTED_FOUNDATION_PASSWORD             NOT NULL VARCHAR2(100)
+ ENCRYPTED_USER_PASSWORD                   NOT NULL VARCHAR2(100)
+ SESSION_NUMBER                            NOT NULL NUMBER
+ START_DATE                                NOT NULL DATE
+ END_DATE                                           DATE
+ DESCRIPTION                                        VARCHAR2(240)
+ LAST_LOGON_DATE                                    DATE
+ PASSWORD_DATE                                      DATE
+ PASSWORD_ACCESSES_LEFT                             NUMBER(15)
+ PASSWORD_LIFESPAN_ACCESSES                         NUMBER(15)
+ PASSWORD_LIFESPAN_DAYS                             NUMBER(15)
+ EMPLOYEE_ID                                        NUMBER(15)
+ EMAIL_ADDRESS                                      VARCHAR2(240)
+ FAX                                                VARCHAR2(80)
+ CUSTOMER_ID                                        NUMBER(15)
+ SUPPLIER_ID                                        NUMBER(15)
+ WEB_PASSWORD                                       VARCHAR2(240)
+ SECURITY_GROUP_ID                                  NUMBER
+ USER_GUID                                          RAW(16)
+ GCN_CODE_COMBINATION_ID                            NUMBER(15)
+ PERSON_PARTY_ID                                    NUMBER
+
+SQL> DESC FND_CONCURRENT_PROGRAM_VL;
+ERROR:
+ORA-04043: object FND_CONCURRENT_PROGRAM_VL does not exist
+
+
+SQL> DESC FND_CONCURRENT_KAWTHERDEPSAL;
+ERROR:
+ORA-04043: object FND_CONCURRENT_KAWTHERDEPSAL does not exist
+
+
+SQL> SELECT concurrent_program_name, user_concurrent_program_name
+  2  FROM fnd_concurrent_programs_vl
+  3  WHERE concurrent_program_name = 'KAWTHERDEPSAL';
+
+CONCURRENT_PROGRAM_NAME
+------------------------------
+USER_CONCURRENT_PROGRAM_NAME
+---------------------------------------------------------------------
+KAWTHERDEPSAL
+KAWTHERDEPSAL
+
+
+
+
+SQL> SELECT MENU_NAME FROM FND_MENUS WHERE MENU_NAME LIKE 'KAWTHER%';
+
+MENU_NAME
+------------------------------
+KAWTHERFORM_MENU
+KAWTHERMENU
+
+SQL> 

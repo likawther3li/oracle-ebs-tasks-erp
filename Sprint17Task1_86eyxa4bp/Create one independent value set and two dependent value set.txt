@@ -1,0 +1,65 @@
+-- VALUE SET --
+
+APPLICATION DEVELOPER> APPLICATION>VALIDATION> SET
+
+Value Set Name: KAWTHER_VS_INDPN
+
+List Type: List of Values
+
+Security Type: No Security
+
+Format Type: Char
+
+Maximum Size: 20
+
+Validation Type: Independent
+
+<Save>
+
+Create a new set File> New
+
+Value Set Name: KAWTHER_VS_DEPN
+
+List Type: List of Values
+
+Security Type: No Security
+
+Format Type: Char
+
+Maximum Size: 30
+
+Validation Type: Dependent
+
+<Edit Information>
+
+Name: KAWTHER_VS_INDPN
+
+Value: NA
+
+Description: DEFULT
+
+<Save>
+
+Create a new set File> New
+
+Value Set Name: KAWTHER_VS_DEPN2
+
+List Type: List of Values
+
+Security Type: No Security
+
+Format Type: Char
+
+Maximum Size: 30
+
+Validation Type: Dependent
+
+<Edit Information>
+
+Name: KAWTHER_VS_INDPN
+
+Value: NA2
+
+Description: DEFAULT2
+
+<Save>

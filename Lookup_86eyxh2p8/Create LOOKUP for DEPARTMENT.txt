@@ -1,0 +1,61 @@
+-- LOOKUP --
+
+APPLICATION DEVELOPER> APPLICATION> LOOKUPS> APPLICATION OBJECT LIBRARY
+
+Type: KAWTHER_LOOKUP_DEPT
+
+Meaning: KAWTHER_LOOKUP_DEPT
+
+Application: Application Object Library
+
+Description: TEST FOR CREATING LOOKUP FOR DEPARTMENT
+
+Access Level: Extensible
+
+Add Lookup Codes:
+
+Code: FIN
+Meaning: FINANCE
+Description: FINANCE
+Effective From: 21-SEP-2026
+Enabled: Yes
+
+Code: IT
+Meaning: INFORMATION TECHNOLOGY
+Description: INFORMATION TECHNOLOGY
+Effective From: 21-SEP-2026
+Enabled: Yes
+
+Code: SALES
+Meaning: SALES
+Description: SALES DEPT
+Effective From: 21-SEP-2026
+Enabled: Yes
+
+<Save>
+
+Create a new set  File> New
+
+Add More Lookup Codes:
+
+Code: PROD
+Meaning: PRODUCTION
+Description: PRODUCTION
+Effective From: 21-SEP-2026
+Enabled: Yes
+
+Code: MKTG
+Meaning: MARKETING
+Description: MARKETING DEPT
+Effective From: 21-SEP-2026
+Enabled: Yes
+
+<Save>
+
+-- VERIFICATION (SQL*Plus) --
+
+SQL> SELECT LOOKUP_TYPE FROM FND_LOOKUP_TYPES WHERE LOOKUP_TYPE LIKE 'KAWTHER%';
+
+LOOKUP_TYPE
+------------------------------
+KAWTHER_LOOKUP_DEPT

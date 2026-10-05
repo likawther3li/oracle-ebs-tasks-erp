@@ -1,0 +1,108 @@
+P2P CYCLE (Procure to Pay) - Kawther - Quick Notes
+=====================================================
+ 
+SUMMARY
+-------
+Login: KAWTHER | Preparer: Stock, Ms. Pat
+Item: XX_KAWTHER_LAPTOP
+Requisition No: 16096 - Approved
+RFQ: 373
+Quotation No: 557
+PO No: 6734 - Approved
+Receipt: 9115
+Invoice No: KAWTHERINV001 - Validated, Accounted: Yes
+Payment: Created, posted to GL (Final)
+Supplier: Abbott Laboratories, Inc. (Site: CORP HQ)
+Qty/Price/Total: 2 EA x 100 USD = 200.00 USD
+ 
+1) ITEM CREATION (Inventory Vision Operations USA)
+Items > Master Items > Org: V1
+Item: XX_KAWTHER_LAPTOP
+Tools > Copy From > Purchasing tab: Purchased=Yes, Purchasable=Yes, Receipt Required=Yes
+SAVE
+SQL: select * from mtl_system_items_b where segment1='XX_KAWTHER_LAPTOP';
+ 
+2) ADD STOCK (Miscellaneous Transaction)
+Transactions > Miscellaneous Transactions > Type: Miscellaneous Receipt
+Item: XX_KAWTHER_LAPTOP, Sub-Inventory, UOM: Ea
+SAVE
+ 
+3) ON-HAND AVAILABILITY
+On-hand Availability > On-hand Quantity > Item: XX_KAWTHER_LAPTOP > FIND
+Confirmed qty in stock
+ 
+4) REQUISITION (Purchasing Vision Operations USA)
+Requisitions > Requisitions
+Item: XX_KAWTHER_LAPTOP, Qty: 2, Supplier: Abbott Laboratories
+Destination Type: Inventory, Price: 100, Total: 200
+SAVE -> Requisition No: 16096 -> Status: APPROVED
+SQL:
+select * from po_requisition_headers_all where segment1='16096';
+select * from po_requisition_lines_all where requisition_header_id='567902';
+select * from po_req_distributions_all where requisition_line_id='618344';
+ 
+5) RFQ
+RFQ's and Quotations > RFQ > Type: Standard RFQ
+Item: XX_KAWTHER_LAPTOP, Supplier: Abbott Laboratories
+SAVE -> RFQ No: 373
+SQL: select * from po_headers_all where segment1='373' and type_lookup_code='RFQ';
+ 
+6) QUOTATION (Tools > Copy Document from RFQ)
+Action: Entire RFQ, Type: Standard Quotation
+Supplier/Site: Abbott Laboratories / CORP HQ
+Price Breaks: Qty 2, Price 100
+-> Quotation No: 557
+SQL: select * from po_headers_all where segment1='557' and type_lookup_code='QUOTATION';
+ 
+7) PURCHASE ORDER
+Purchase Orders > Purchase Order > Type: Standard
+Supplier/Site: Abbott Laboratories / CORP HQ, Ship To: Auckland
+Item: XX_KAWTHER_LAPTOP, Qty: 2, Price: 100, Total: 200
+SAVE -> PO No: 6734
+Approve Document > Submit for Approval -> Status: APPROVED
+SQL:
+select * from po_headers_all where segment1='6734' and type_lookup_code='STANDARD'; -- PO_HEADER_ID=360108
+select * from po_lines_all where po_header_id='360108'; -- PO_LINE_ID=428479
+ 
+8) RECEIVING
+Receiving > Receipts > Org: V1
+PO No: 6734, Supplier: Abbott Laboratories (auto)
+Destination Type: Inventory, Qty: 2 Each
+Comments: XX_KAWTHER_LAPTOP_2NOS DELIVERED
+Received By: Stock, Ms. Pat, Routing: Direct Delivery
+SAVE -> Receipt No: 9115
+SQL: select * from rcv_shipment_headers where receipt_num='9115';
+ 
+9) AP INVOICE (Payables Vision Operations USA)
+Invoices > Entry > Invoices
+PO No: 6734 (auto-populated), Invoice Date: 29-SEP-2026
+Invoice No: KAWTHERINV001, Amount: 200.00
+Match button -> matched to PO 6734 / Receipt 9115
+Distributions auto-created: Type Accrual, Amount 200.00
+Account: 01-000-2210-0000-000, GL Date: 29-SEP-2026
+Desc: LAPTOP FOR CODELINE-MUSCAT
+Actions1 > Validate -> Hold "Qty Rec" appeared -> Needs Revalidation
+Holds tab > Release (Release Name: Invoice Quick Released)
+Actions1 > Validate again -> Status: Validated, Approval: Not Required, Holds: 0
+SQL:
+select * from ap_invoices_all where invoice_num='KAWTHERINV001'; -- INVOICE_ID=653102, VENDOR_ID=601
+select * from ap_invoice_distributions_all where invoice_id='653102'; -- ACCRUAL_POSTED_FLAG=Y
+ 
+10) CREATE ACCOUNTING + PAYMENT
+Actions1 > Create Accounting > Final Post > Force Approval > OK
+Message: "Accounting has been successfully created for this transaction"
+Accounting Events: Event Type=Invoice Validated, Status=Final Accounted
+Subledger Journal Lines (GL Date 29-Sep-2026):
+  01-000-2210-0000-000 Liability/AP ........ Debit 200.00
+  01-000-1110-0000-000 Cash Clearing ........ Credit 200.00
+Payments > Entry > Payments -> Payment created for KAWTHERINV001
+SQL (confirms payment posted):
+select h.ae_header_id, h.event_type_code, h.accounting_entry_status_code, h.gl_transfer_status_code
+from xla_ae_headers h
+where h.event_id in (select accounting_event_id from ap_invoice_payments_all where invoice_id=653102);
+-- Result: EVENT_TYPE_CODE=PAYMENT CREATED, STATUS=F (Final), GL_TRANSFER_STATUS=S (Success)
+ 
+============================================================
+DONE: Item -> Requisition -> RFQ -> Quotation -> PO (Approved)
+-> Receiving -> AP Invoice (Matched/Validated/Accounted) -> Payment (Posted to GL)
+============================================================

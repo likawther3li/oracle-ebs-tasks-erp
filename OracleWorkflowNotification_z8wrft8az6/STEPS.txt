@@ -1,0 +1,28 @@
+Oracle Workflow Builder – Steps:
+Step 1: Assign the Workflow Administrator Responsibility
+• System Administrator → Security > User > Define → user KAWTHER → Direct Responsibilities → search WORKFLOW ADMIN% → select Workflow Administrator Web Applications.
+Step 2: Open Workflow Administration in Oracle E-Business Suite
+• EBS R12 → Workflow Administrator Web Applications responsibility → Administration > Workflow Configuration.
+Step 3: Create the Item Type and Process with the Quick Start Wizard
+• Workflow Builder → File > Quick Start Wizard → Item Type XX_KA_WF, Process KAWTHER_PRC → OK (creates the diagram with Start/End).
+Step 4: Create a Message
+• Right-click Messages > New Message → name it KAWTHER_MSG.
+Step 5: Set the Message Body
+• Body tab → Subject KAWTHER_MSG, Text HELLO KAWTHER WELCOME TO ORACLE WF.
+Step 6: Add a Notification Activity
+• Drag a Notify icon onto the diagram → name it KAWTHER_NOTIFY → attach message KAWTHER_MSG.
+Step 7: Connect the Activities
+Connect the diagram: Start → KAWTHER_NOTIFY → End.
+Step 8: Configure the Node Properties
+• Node properties → Performer Type Constant, Value KAWTHER.
+Step 9: Save and Verify
+• File > Save, then File > Verify.
+Step 10: Run the Workflow
+• Developer Studio > Workflow Types → search XX_KA_WF → click the Run icon.
+• Set Workflow Owner, Item Key 1, confirm Process KAWTHER_PRC → Submit → confirmation: "Workflow 'XX_KA_WF / 1' has been started."
+Step 11: Check the Notification
+• Log in as KAWTHER → Notifications tab → open KAWTHER_MSG.
+• Shows the message "HELLO KAWTHER WELCOME TO ORACLE WF" → click OK to close it.
+Step 12: Check Status Monitor
+• Status Monitor → search Workflow Type XX_KA_WF → open Status Diagram.
+• Confirms the workflow Status is Complete.
